@@ -1,0 +1,49 @@
+public class amazon {
+    public static void main(String[] args)throws InterruptedException {
+
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\alexa\\chromedriver.exe");
+        WebDriver driver;
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+        driver.get("https://www.amazon.com/");
+        Thread.sleep(2000);
+        WebElement SearchTextBox=driver.findElement(By.xpath("//*[@id=\"twotabsearchtextbox\"]"));
+        SearchTextBox.sendKeys("Harry Potter and the Order of the Phoenix");
+        Thread.sleep(2000);
+        WebElement SearchButton=driver.findElement(By.cssSelector("#nav-search-submit-button"));
+        SearchButton.click();
+        Thread.sleep(2000);
+
+        WebElement h1 = driver.findElement(By.className("s-desktop-toolbar"));
+        String str = h1.findElement(By.cssSelector("span:nth-child(1)")).getText();
+        int start = str.indexOf("of");
+        int end = str.indexOf("result");
+
+        // String outStr = str.substring(start + 3, end -1);
+        String outStr = str.substring(start + 2, end).trim();
+        System.out.println(outStr);
+
+        WebElement EnglishButton=driver.findElement(By.cssSelector("#p_n_feature_nine_browse-bin\\/3291437011 > span > a > div"));
+        EnglishButton.click();
+        List<WebElement> titles = driver.findElements(By.className("template=SEARCH_RESULTS"));
+        //System.out.println(titles.size());
+
+        int textLength = -1;
+        String title = "";
+
+
+        for(int i = 0; i < titles.size() - 1 ; i++ ){
+            WebElement currentElement = titles.get(i);
+            String currentTitle = currentElement.findElement(By.className("a-text-normal")).getText();
+
+            if (currentTitle.length() > textLength) {
+                textLength = currentTitle.length();
+                title = currentTitle;
+            }
+        }
+
+        System.out.println(title);
+
+    }
+}
