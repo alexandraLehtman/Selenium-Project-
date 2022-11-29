@@ -1,0 +1,58 @@
+namespace TestProject
+{
+    class Class1
+    {
+        IWebDriver driver;
+
+        [SetUp]
+
+        public void StartBrowser()
+        {
+    
+            new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
+            driver = new ChromeDriver();
+        }
+        [Test]
+        public void Test1()
+        {
+
+            driver.Url = "https://www.ikea.com/il/he/";
+            System.Threading.Thread.Sleep(3000);
+            driver.FindElement(By.CssSelector("#onetrust-accept-btn-handler")).Click();
+            driver.FindElement(By.XPath("/html/body/header/div/div/div/ul/li[2]/a")).Click();
+            System.Threading.Thread.Sleep(3000);
+            driver.FindElement(By.XPath("/html/body/div[7]/div/div/div[1]/button/span/span/span")).Click();
+            driver.FindElement(By.XPath("/html/body/div[7]/div/div/div[3]/div/div/div[1]/div/form/div/div[1]/div/div/div/div/input")).SendKeys("אלכסנדרה");
+            driver.FindElement(By.XPath("/html/body/div[7]/div/div/div[3]/div/div/div[1]/div/form/div/div[2]/div/div/div/div/input")).SendKeys("לחטמן");
+            driver.FindElement(By.XPath("/html/body/div[7]/div/div/div[3]/div/div/div[1]/div/form/div/div[3]/div/div/div/div/input")).SendKeys("alexandralehtman356@gmail.com");
+            driver.FindElement(By.XPath("/html/body/div[7]/div/div/div[3]/div/div/div[1]/div/form/div/div[4]/div/div/div/div/div[1]/div/input")).SendKeys("Al1234567");
+            driver.FindElement(By.XPath("/html/body/div[7]/div/div/div[3]/div/div/div[1]/div/form/div/div[7]/div/div")).Click();
+            driver.FindElement(By.XPath("/html/body/div[7]/div/div/div[3]/div/div/div[1]/div/form/div/div[7]/div/div/div[1]/input")).Click();
+            driver.FindElement(By.XPath("/html/body/div[7]/div/div/div[3]/div/div/div[2]/div/button/span")).Click();
+
+            System.Threading.Thread.Sleep(3000);
+
+            driver.FindElement(By.XPath("/html/body/header/div/div/div/div[1]/a/img")).Click();
+            System.Threading.Thread.Sleep(3000);
+
+            driver.FindElement(By.XPath("/html/body/div[7]/main/div/div/div/div[2]/article/section[1]/div[3]/figure/div/div/pub-hide-empty-link/a/div/div/img")).Click();
+            System.Threading.Thread.Sleep(3000);
+
+            driver.FindElement(By.XPath("/html/body/main/div/div/div[3]/div/div[1]/nav/a[5]")).Click();
+            driver.FindElement(By.XPath("/html/body/main/div/div/div[3]/div/div[1]/nav/a[6]")).Click();
+            driver.FindElement(By.XPath("/html/body/main/div/div/div[3]/div/div[1]/nav/a[1]")).Click();
+            System.Threading.Thread.Sleep(3000);
+
+                   
+            driver.FindElement(By.XPath("/html/body/main/div/div/div[4]/div[1]/div/div[2]/div/div[2]/div[2]/div/div/a")).Click();
+            driver.FindElement(By.XPath("/html/body/main/div/div[1]/div/div[2]/div[2]/div[2]/div[3]/div/div/a/div/span")).Click();
+            System.Threading.Thread.Sleep(1000);
+            driver.FindElement(By.XPath("/html/body/main/div/div[1]/div/div[2]/div[2]/div[2]/div[5]/div/div/div/span")).Click();
+            System.Threading.Thread.Sleep(1000);
+            driver.FindElement(By.XPath("/html/body/main/div/div[2]/div/div[3]/div/div[2]/div/div/div/div[3]/label[3]")).Click();
+            System.Threading.Thread.Sleep(1000);
+            driver.FindElement(By.XPath("/html/body/main/div/div[2]/div/div[3]/div/div[3]/button")).Click();
+        }
+    }
+
+}
